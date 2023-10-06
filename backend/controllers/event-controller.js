@@ -79,9 +79,7 @@ export const deleteEvent = async (req, res, next) => {
 
   let event;
   try {
-    event = await Event.findByIdAndRemove(id).populate("user");
-    await event.user.events.pull(event);
-    await event.user.save();
+    event = await Event.findByIdAndRemove(id);
   } catch (err) {
     console.log(err);
   }

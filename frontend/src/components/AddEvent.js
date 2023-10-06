@@ -14,6 +14,13 @@ const AddEvent = ({ isOpen, onClose, onEventAdded }) => {
     description: "",
   });
 
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const sendRequest = async () => {
     const res = await axios
       .post("http://localhost:5000/api/event/add", {
@@ -32,13 +39,6 @@ const AddEvent = ({ isOpen, onClose, onEventAdded }) => {
     console.log(inputs);
     sendRequest().then((data) => console.log(data));
     onClose();
-  };
-
-  const handleChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
   };
 
   return (
